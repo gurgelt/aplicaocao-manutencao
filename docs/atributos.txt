@@ -1,0 +1,96 @@
+Descrição Geral do Sistema:
+
+Desenvolva um sistema de cadastro de produtos para manutenção em Python, com interface gráfica básica e banco de dados local (SQLite). O sistema será composto por três telas principais: Cadastro de Usuários, Recepção e Manutenção.
+
+Autenticação e Permissões de Usuários:
+- O sistema inicia com a criação de um usuário administrador padrão:
+  - Usuário: admin
+  - Senha: admin
+- Cada usuário terá um Cargo: Administrador ou Usuário
+- Somente administradores poderão:
+  - Adicionar, editar ou excluir usuários
+  - Definir o segundo administrador (apenas 2 admins permitidos)
+- Campos obrigatórios no cadastro de usuários:
+  - Nome
+  - Usuário
+  - Senha (mínimo 5 caracteres, incluindo 1 caractere especial e 1 número)
+  - Cargo (Administrador ou Usuário)
+- A tela deve mostrar os usuários conectados e log de ações (quem criou, atualizou ou deletou uma solicitação, com data e hora)
+- Ao excluir usuários ou solicitações, mostrar confirmação antes da ação
+- Excluir um usuário apenas marca como inativo no banco, não o remove definitivamente
+
+1. Tela de Cadastro de Usuários
+- Formulário com os campos mencionados acima
+- Tabela "Usuários Cadastrados" exibindo todos os usuários
+- A janela deve se redimensionar conforme o conteúdo da tabela
+- Botões:
+  - Cadastrar novo usuário
+  - Excluir usuário
+  - Editar usuário (restrito ao admin)
+
+2. Tela de Recepção (Cadastro de Solicitações)
+
+Cliente:
+- ID da Solicitação (gerado automaticamente, incremental)
+- Ordem de Serviço (formato: mmAA-1, 0425-1, 0425-2, reinicia a contagem depois do traço a cada novo mês)
+- Nome do Responsável
+- Nome da Empresa
+- Telefone
+- E-mail
+- Local de Recebimento (Checkbox: Recepção João Mafra ou Coleta no Cliente)
+- Histórico do Cliente (Dropdown: Novo, Recorrente, Inativo)
+- Galeria de Imagens:
+  - Adicionar, visualizar (com duplo clique), atualizar e remover imagens (máximo 10 imagens)
+  - Imagens devem ser salvas no banco de dados
+
+Produtos:
+- Descrição do Problema (até 500 caracteres)
+- Marca do Motor
+- Modelo do Motor
+- Condição da Peça (Dropdown: Ótimo, Normal, Péssimo)
+- Data da criação da solicitação
+
+Regras:
+- Todos os campos são obrigatórios para cadastro
+- Não é permitido alterar o ID ou Ordem de Serviço após o cadastro
+- O usuário poderá atualizar os valores clicando na linha da tabela, assim será mostrado o que já foi preenchido
+
+3. Tela de Manutenção (Diagnóstico e Atualização)
+
+Visualização e Edição:
+- Exibir todas as solicitações cadastradas na recepção em forma de tabela
+- Duplo clique em uma linha da tabela abre o formulário para editar a solicitação
+- Os dados devem ser persistidos no banco (disponíveis ao reiniciar)
+- Não permitir duplicar solicitações
+- Campos obrigatórios para atualizar uma solicitação
+
+Formulário de Diagnóstico:
+- ID da Solicitação (não editável)
+- OS (Ordem de Serviço - não editável)
+- Código do Motor
+- Nome da Empresa
+- Nome do Cliente
+- Modelo do Motor
+- Defeitos (campo grande, 500 caracteres)
+- Prioridade (Baixa, Normal, Alta, Urgente)
+- Status (padrão: Pendente; outras opções: Em análise, Orçamento aprovado, Em manutenção, Concluído, Cancelado)
+- Diagnóstico (campo grande, 1000 caracteres)
+  - Obrigatório se o status for Concluído
+
+Botões:
+- Atualizar solicitação
+- Limpar campos
+- Excluir solicitação (com confirmação)
+- Cadastrar nova solicitação (não duplicar solicitações existentes)
+
+Extras:
+- Campo de busca no canto superior direito
+- Botão de acesso ao cadastro de usuários no canto superior esquerdo (apenas para admin)
+
+Banco de Dados:
+- Banco de dados local (SQLite) com persistência de:
+  - Usuários (com permissões e senha segura)
+  - Solicitações da recepção
+  - Dados da manutenção
+  - Histórico de ações (criação, edição e exclusão com data/hora e usuário responsável)
+  - Imagens em base64 ou como blobs no banco
