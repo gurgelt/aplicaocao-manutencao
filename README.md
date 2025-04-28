@@ -75,6 +75,18 @@ sistema_manutencao/
    ```
    python main.py
    ```
+4. Sempre verifique a conexão do banco de dados antes de iniciar o sistema:
+   ```
+              # Configuração de conexão com SQL Server
+            self.conn = pyodbc.connect(
+                'DRIVER={ODBC Driver 18 for SQL Server};'
+                'SERVER=(PEDIR CONEXAO DO BANCO PARA ADM);'
+                'DATABASE=manutencao;'
+                'Trusted_Connection=yes;'
+                'TrustServerCertificate=yes;'
+            )
+   ```
+
 
 ## Usuário Padrão
 
