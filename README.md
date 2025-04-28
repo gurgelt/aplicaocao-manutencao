@@ -1,6 +1,6 @@
 # Sistema de Cadastro de Produtos para Manutenção
 
-Um sistema completo em Python para cadastro e gerenciamento de solicitações de manutenção de produtos, implementado com interface gráfica PyQt5 e banco de dados SQLite.
+Um sistema completo em Python para cadastro e gerenciamento de solicitações de manutenção de produtos, implementado com interface gráfica PyQt5 e banco de dados SQL Server.
 
 ## Recursos
 
